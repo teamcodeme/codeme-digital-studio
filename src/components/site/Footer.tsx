@@ -1,4 +1,4 @@
-import { Globe, Linkedin as LinkedinIcon, Twitter as TwitterIcon, Instagram as InstagramIcon, Facebook as FacebookIcon, Github as GithubIcon } from "lucide-react";
+import { Globe, Send, AtSign, MessageCircle, Share2, Code2 } from "lucide-react";
 import logo from "@/assets/logo-teamcodeme.png";
 
 export function Footer() {
@@ -18,7 +18,7 @@ export function Footer() {
               startups, SMEs, and growing brands launch, automate, and scale online.
             </p>
             <div className="mt-6 flex gap-2">
-              {[Twitter, Linkedin, Instagram, Facebook, Github].map((Icon, i) => (
+              {[Globe, AtSign, MessageCircle, Share2, Code2].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
