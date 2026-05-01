@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Instagram, Facebook } from "lucide-react/icons";
+import { Globe, Linkedin as LinkedinIcon, Twitter as TwitterIcon, Instagram as InstagramIcon, Facebook as FacebookIcon, Github as GithubIcon } from "lucide-react";
 import logo from "@/assets/logo-teamcodeme.png";
 
 export function Footer() {
