@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { SectionHeader } from "./Section";
 import { contactDetails } from "@/data/contact";
+import { db } from "@/lib/firebase";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(80),
@@ -13,8 +15,9 @@ const schema = z.object({
   phone: z.string().trim().min(6, "Enter a valid phone").max(30),
   business: z.string().trim().max(120).optional().or(z.literal("")),
   service: z.string().min(1, "Select a service"),
-  budget: z.string().min(1, "Select a budget"),
+  budget: z.string().optional().or(z.literal("")),
   message: z.string().trim().min(10, "Tell us a bit more").max(1000),
+  website: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -34,6 +37,7 @@ const budgets = ["Under $1,000", "$1,000 – $5,000", "$5,000 – $15,000", "$15
 
 export function Contact() {
   const [sent, setSent] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const {
     register,
     handleSubmit,
@@ -41,11 +45,35 @@ export function Contact() {
     reset,
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (_data: FormValues) => {
-    await new Promise((r) => setTimeout(r, 800));
-    setSent(true);
-    reset();
-    setTimeout(() => setSent(false), 5000);
+  const onSubmit = async (data: FormValues) => {
+    setSent(false);
+    setSubmitError("");
+
+    if (data.website?.trim()) {
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "inquiries"), {
+        name: data.name.trim(),
+        email: data.email.trim(),
+        phone: data.phone.trim(),
+        businessName: data.business?.trim() || "",
+        serviceNeeded: data.service,
+        budgetRange: data.budget || "",
+        message: data.message.trim(),
+        source: "Team CodeMe Landing Page",
+        status: "new",
+        createdAt: serverTimestamp(),
+      });
+
+      setSent(true);
+      reset();
+      setTimeout(() => setSent(false), 5000);
+    } catch (error) {
+      console.error("Failed to submit inquiry", error);
+      setSubmitError("Something went wrong. Please try again or contact us on WhatsApp.");
+    }
   };
 
   return (
@@ -116,6 +144,15 @@ export function Contact() {
             className="glass rounded-2xl p-6 sm:p-8 lg:col-span-3"
             noValidate
           >
+            <input
+              type="text"
+              {...register("website")}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field label="Name" error={errors.name?.message}>
                 <input
@@ -169,6 +206,22 @@ export function Contact() {
                 </Field>
               </div>
             </div>
+
+            {(sent || submitError) && (
+              <div
+                className={`mt-5 rounded-xl border p-4 text-sm ${
+                  sent
+                    ? "border-brand-green/30 bg-brand-green/10 text-brand-green"
+                    : "border-destructive/30 bg-destructive/10 text-destructive"
+                }`}
+                role="status"
+                aria-live="polite"
+              >
+                {sent
+                  ? "Thank you! Your inquiry has been sent. Team CodeMe will contact you soon."
+                  : submitError}
+              </div>
+            )}
 
             <button
               type="submit"
