@@ -1,5 +1,14 @@
-import { Globe, Send, AtSign, MessageCircle, Share2, Code2 } from "lucide-react";
+import { AtSign, Code2, Globe, MessageCircle, Share2 } from "lucide-react";
 import logo from "@/assets/logo-teamcodeme.png";
+import { contactDetails, socialLinks } from "@/data/contact";
+
+const footerSocials = [
+  { icon: Globe, label: "LinkedIn", href: socialLinks.linkedin },
+  { icon: AtSign, label: "Instagram", href: socialLinks.instagram },
+  { icon: MessageCircle, label: "WhatsApp", href: socialLinks.whatsapp },
+  { icon: Share2, label: "Facebook", href: socialLinks.facebook },
+  { icon: Code2, label: "TikTok", href: socialLinks.tiktok },
+];
 
 export function Footer() {
   return (
@@ -18,11 +27,13 @@ export function Footer() {
               startups, SMEs, and growing brands launch, automate, and scale online.
             </p>
             <div className="mt-6 flex gap-2">
-              {[Globe, AtSign, MessageCircle, Share2, Code2].map((Icon, i) => (
+              {footerSocials.map(({ icon: Icon, label, href }) => (
                 <a
-                  key={i}
-                  href="#"
-                  aria-label="Social link"
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open Team CodeMe ${label}`}
                   className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-surface/60 text-muted-foreground transition-colors hover:border-brand-cyan/40 hover:text-brand-cyan"
                 >
                   <Icon className="h-4 w-4" />
@@ -54,9 +65,12 @@ export function Footer() {
               ))}
             </ul>
             <div className="mt-6 text-xs text-muted-foreground">
-              <div>hello@teamcodeme.com</div>
-              <div>+94 70 000 0000</div>
-              <div>Colombo, Sri Lanka</div>
+              <div className="break-words">{contactDetails.email}</div>
+              {contactDetails.phones.map((phone) => (
+                <div key={phone}>{phone}</div>
+              ))}
+              <div className="mt-2">{contactDetails.location}</div>
+              <div>{contactDetails.locationNote}</div>
             </div>
           </div>
         </div>

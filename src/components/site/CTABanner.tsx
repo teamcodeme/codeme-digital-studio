@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
+import { contactDetails } from "@/data/contact";
 
 export function CTABanner() {
   return (
@@ -36,7 +37,7 @@ export function CTABanner() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="https://wa.me/0000000000"
+                href={contactDetails.whatsappPrimary}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-brand-green/40 bg-brand-green/10 px-6 py-3.5 text-sm font-semibold text-brand-green transition-colors hover:bg-brand-green/20"

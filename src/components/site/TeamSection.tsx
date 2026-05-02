@@ -1,14 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, AtSign, Building2, ExternalLink, Mail, MessageCircle, Share2 } from "lucide-react";
-
-// TODO: Replace these with the official Team CodeMe social media URLs if different.
-const teamSocialLinks = {
-  linkedin: "https://www.linkedin.com/company/teamcodeme",
-  facebook: "https://www.facebook.com/teamcodeme",
-  instagram: "https://www.instagram.com/teamcodeme",
-  tiktok: "https://www.tiktok.com/@teamcodeme",
-  whatsapp: "https://wa.me/94740472228",
-};
+import { ArrowUpRight, AtSign, ExternalLink, Mail, MessageCircle, Share2 } from "lucide-react";
+import { socialLinks } from "@/data/contact";
 
 const teamMembers = [
   {
@@ -64,11 +56,11 @@ const teamMembers = [
 ];
 
 const socialItems = [
-  { label: "LinkedIn", href: teamSocialLinks.linkedin },
-  { label: "Facebook", href: teamSocialLinks.facebook },
-  { label: "Instagram", href: teamSocialLinks.instagram },
-  { label: "TikTok", href: teamSocialLinks.tiktok },
-  { label: "WhatsApp", href: teamSocialLinks.whatsapp },
+  { label: "LinkedIn", href: socialLinks.linkedin },
+  { label: "Facebook", href: socialLinks.facebook },
+  { label: "Instagram", href: socialLinks.instagram },
+  { label: "TikTok", href: socialLinks.tiktok },
+  { label: "WhatsApp", href: socialLinks.whatsapp },
 ];
 
 export function TeamSection() {

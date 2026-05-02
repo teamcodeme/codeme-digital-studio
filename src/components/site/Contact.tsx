@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { SectionHeader } from "./Section";
+import { contactDetails } from "@/data/contact";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(80),
@@ -73,17 +74,27 @@ export function Contact() {
 
               <div className="mt-6 space-y-4">
                 {[
-                  { icon: Mail, label: "Email", value: "hello@teamcodeme.com" },
-                  { icon: Phone, label: "Phone / WhatsApp", value: "+94 70 000 0000" },
-                  { icon: MapPin, label: "Location", value: "Colombo, Sri Lanka" },
+                  { icon: Mail, label: "Email", lines: [contactDetails.email] },
+                  { icon: Phone, label: "Phone / WhatsApp", lines: contactDetails.phones },
+                  {
+                    icon: MapPin,
+                    label: "Location",
+                    lines: [contactDetails.location, contactDetails.locationNote],
+                  },
                 ].map((c) => (
                   <div key={c.label} className="flex items-start gap-3">
                     <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan">
                       <c.icon className="h-4 w-4" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <div className="text-xs text-muted-foreground">{c.label}</div>
-                      <div className="text-sm font-medium">{c.value}</div>
+                      <div className="mt-0.5 space-y-0.5 text-sm font-medium">
+                        {c.lines.map((line) => (
+                          <div key={line} className="break-words">
+                            {line}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
