@@ -6,9 +6,8 @@ import logo from "@/assets/logo-teamcodeme.png";
 const links = [
   { href: "#home", label: "Home" },
   { href: "#services", label: "Services" },
-  { href: "#projects", label: "Projects" },
-  { href: "#process", label: "Process" },
-  { href: "#about", label: "About" },
+  { href: "#packages", label: "Packages" },
+  { href: "#projects", label: "Portfolio" },
   { href: "#contact", label: "Contact" },
 ];
 

@@ -3,6 +3,7 @@ import { AnimatedBackground } from "@/components/site/AnimatedBackground";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { Services } from "@/components/site/Services";
+import { DigitalSolutionPackages } from "@/components/site/DigitalSolutionPackages";
 import { WhatWeBuild } from "@/components/site/WhatWeBuild";
 import { WhyChooseUs } from "@/components/site/WhyChooseUs";
 import { Process } from "@/components/site/Process";
@@ -17,8 +18,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title:
-          "Team CodeMe — Software Development & Digital Marketing Company in Sri Lanka",
+        title: "Team CodeMe — Software Development & Digital Marketing Company in Sri Lanka",
       },
       {
         name: "description",
@@ -65,6 +65,7 @@ function Index() {
       <Navbar />
       <Hero />
       <Services />
+      <DigitalSolutionPackages />
       <WhatWeBuild />
       <WhyChooseUs />
       <Process />

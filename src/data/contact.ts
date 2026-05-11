@@ -1,6 +1,6 @@
 export const contactDetails = {
   email: "teamcodeme.lk@gmail.com",
-  phones: ["+94 740 472 228", "+94 775 206 851"],
+  phones: ["+94 740 472 228 (Mahdiya)", "+94 775 206 851 (Abdulla)"],
   whatsappPrimary: "https://wa.me/94740472228",
   location: "Remote",
   locationNote: "Physical meetings by arrangement",

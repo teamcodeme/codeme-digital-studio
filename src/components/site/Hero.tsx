@@ -30,8 +30,8 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
           >
-            We Build Digital{" "}
-            <span className="text-gradient-brand">Products</span> That Help Businesses Grow
+            We Build Digital <span className="text-gradient-brand">Products</span> That Help
+            Businesses Grow
           </motion.h1>
 
           <motion.p
@@ -59,10 +59,10 @@ export function Hero() {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="#services"
+              href="#packages"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-secondary/40 px-6 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition-colors hover:bg-secondary"
             >
-              View Our Services
+              View Our Solution Packages
             </a>
           </motion.div>
 
@@ -101,14 +101,17 @@ function HeroVisual() {
       style={{ perspective: 1200 }}
     >
       {/* Glow halo */}
-      <div className="absolute inset-0 -z-10 rounded-full opacity-60 blur-3xl"
-        style={{ background: "var(--gradient-brand)" }} />
+      <div
+        className="absolute inset-0 -z-10 rounded-full opacity-60 blur-3xl"
+        style={{ background: "var(--gradient-brand)" }}
+      />
 
       {/* Floating orb */}
       <motion.div
         className="absolute right-6 top-2 h-24 w-24 rounded-full"
         style={{
-          background: "radial-gradient(circle at 30% 30%, oklch(0.85 0.18 210), oklch(0.45 0.18 250))",
+          background:
+            "radial-gradient(circle at 30% 30%, oklch(0.85 0.18 210), oklch(0.45 0.18 250))",
           boxShadow: "0 0 60px oklch(0.72 0.18 220 / 0.7)",
         }}
         animate={{ y: [0, -16, 0], rotate: [0, 8, 0] }}
@@ -200,7 +203,8 @@ function HeroVisual() {
           <span className="text-brand-green">"10x"</span>;
         </div>
         <div className="text-muted-foreground">
-          <span className="text-brand-cyan">launch</span>(<span className="text-brand-green">"now"</span>);
+          <span className="text-brand-cyan">launch</span>(
+          <span className="text-brand-green">"now"</span>);
         </div>
       </motion.div>
 
